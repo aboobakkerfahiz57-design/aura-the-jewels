@@ -1,1 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Aura The Jewels | Mangaluru</title>
+
+  <meta
+    name="description"
+    content="Aura The Jewels — Timeless jewellery, modern elegance. Discover our jewellery collections in Mangaluru."
+  />
+
+  <meta name="theme-color" content="#f8f4ec" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --ivory: #faf7f0;
+      --cream: #f3eee5;
+      --white: #ffffff;
+      --black: #171513;
+      --gold: #b88a4a;
+      --gold-light: #d9b77a;
+      --gold-dark: #8d642d;
+      --text: #292622;
+      --muted: #777066;
+      --border: rgba(184, 138, 74, 0.25);
+      --shadow: 0 20px 60px rgba(35, 27, 18, 0.10);
+      --radius: 22px;
+      --serif: "Cormorant Garamond", serif;
+      --sans: "DM Sans", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ivory);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: var(--ivory);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-inner {
+      text-align: center;
+    }
+
+    .loader-ring {
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: loaderSpin 2s linear infinite;
+    }
+
+    .loader-ring span {
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .loader-title {
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-size: 25px;
+      letter-spacing: 3px;
+    }
+
+    @keyframes loaderSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 82px;
+      z-index: 1000;
+      background: rgba(250, 247, 240, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(184, 138, 74, 0.14);
+      transition: 0.35s ease;
+    }
+
+    header.scrolled {
+      height: 70px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav {
+      width: min(1200px, calc(100% - 40px));
+      height: 100%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      font-family: var(--serif);
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-whatsapp {
+      background: var(--black);
+      color: white;
+      border: none;
+      padding: 11px 17px;
+      border-radius: 30px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .nav-whatsapp:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: transparent;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(250, 247, 240, 0.90),
+          rgba(250, 247, 240, 0.38),
+          rgba(250, 247, 240, 0.88)
+        ),
+        url("aura-homepage-background.png") center center / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at center,
+          transparent 20%,
+          rgba(250, 247, 240, 0.18) 70%,
+          rgba(250, 247, 240, 0.45)
+        );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(850px, calc(100% - 40px));
+      text-align: center;
+      padding-top: 80px;
+      animation: heroIn 1.2s ease both;
+    }
+
+    .hero-logo {
+      width: 180px;
+      margin: 0 auto 25px;
+      filter: drop-shadow(0 15px 25px rgba(80, 53, 21, 0.10));
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 11px;
+      color: var(--gold-dark);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 500;
+      line-height: 0.95;
+      color: var(--black);
+    }
+
+    .hero h1 span {
+      color: var(--gold-dark);
+      font-style: italic;
+    }
+
+    .hero-description {
+      max-width: 520px;
+      margin: 24px auto 32px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #625b52;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      min-width: 170px;
+      padding: 15px 25px;
+      border-radius: 40px;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      transition: 0.35s ease;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: white;
+      border-color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      border-color: var(--gold-dark);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--black);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      transform: translateY(-3px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      animation: scrollFloat 2s ease-in-out infinite;
+    }
+
+    @keyframes heroIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrollFloat {
+      50% {
+        transform: translate(-50%, 7px);
+      }
+    }
+
+    /* =========================
+       COMMON
+    ========================= */
+
+    section {
+      padding: 110px 20px;
+    }
+
+    .container {
+      width: min(1150px, 100%);
+      margin: auto;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      letter-spacing: 4px;
+      font-size: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 58px);
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .section-text {
+      max-width: 600px;
+      margin: 15px auto 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    /* =========================
+       COLLECTIONS
+    ========================= */
+
+    #collections {
+      background: var(--white);
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .collection-card {
+      position: relative;
+      min-height: 220px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #fffdf9, #f5efe5);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .collection-card::before {
+      content: "✦";
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      color: var(--gold);
+      font-size: 18px;
+      transition: transform 0.4s ease;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .collection-card:hover::before {
+      transform: rotate(30deg) scale(1.2);
+    }
+
+    .collection-number {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      color: #b5a999;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .collection-card h3 {
+      font-family: var(--serif);
+      font-size: 31px;
+      font-weight: 600;
+    }
+
+    .collection-card p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* =========================
+       COLLECTION VIEW
+    ========================= */
+
+    .collection-view {
+      display: none;
+      background: var(--ivory);
+      min-height: 70vh;
+    }
+
+    .collection-view.active {
+      display: block;
+      animation: collectionOpen 0.5s ease both;
+    }
+
+    @keyframes collectionOpen {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .collection-view-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .collection-view-head h2 {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 500;
+    }
+
+    .close-collection {
+      border: 1px solid var(--border);
+      background: transparent;
+      padding: 11px 17px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-collection:hover {
+      background: var(--black);
+      color: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      aspect-ratio: 1 / 1;
+      background:
+        radial-gradient(circle at center, #fff, #eee7da);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a99a86;
+      font-family: var(--serif);
+      font-size: 25px;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h4 {
+      font-family: var(--serif);
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .product-inquiry {
+      margin-top: 15px;
+      display: inline-block;
+      color: var(--gold-dark);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    #about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-symbol {
+      width: min(360px, 80%);
+      aspect-ratio: 1;
+      margin: auto;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .about-symbol::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(184, 138, 74, 0.45);
+      border-radius: 50%;
+    }
+
+    .about-symbol img {
+      width: 65%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content .section-label {
+      text-align: left;
+    }
+
+    .about-content h2 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 5vw, 62px);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    /* =========================
+       STORE
+    ========================= */
+
+    #store {
+      background: var(--black);
+      color: white;
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .store-card {
+      border: 1px solid rgba(216, 183, 122, 0.25);
+      border-radius: var(--radius);
+      padding: 45px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .store-card h3 {
+      font-family: var(--serif);
+      font-size: 37px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .store-card p {
+      color: #bdb5aa;
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .store-detail {
+      display: flex;
+      gap: 14px;
+      margin-top: 22px;
+      color: #e4ded4;
+    }
+
+    .store-icon {
+      color: var(--gold-light);
+    }
+
+    .store-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dark-btn {
+      border: 1px solid rgba(216, 183, 122, 0.5);
+      color: white;
+      background: transparent;
+      padding: 13px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dark-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    #contact {
+      background: var(--ivory);
+    }
+
+    .contact-box {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 65px 30px;
+      text-align: center;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 6vw, 68px);
+      font-weight: 500;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 15px auto 30px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #11100e;
+      color: #aaa39a;
+      padding: 45px 20px 25px;
+    }
+
+    .footer-inner {
+      width: min(1150px, 100%);
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      color: white;
+      font-family: var(--serif);
+      font-size: 25px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social a {
+      color: #d9b77a;
+      font-size: 13px;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px;
+    }
+
+    /* =========================
+       FLOATING WHATSAPP
+    ========================= */
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      background: #1f9d55;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      font-size: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      transition: 0.3s ease;
+    }
+
+    .floating-whatsapp:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    /* =========================
+       BACK TO TOP
+    ========================= */
+
+    .back-top {
+      position: fixed;
+      right: 22px;
+      bottom: 92px;
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: var(--ivory);
+      color: var(--gold-dark);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 998;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links,
+      .nav-whatsapp {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        padding: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(250, 247, 240, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .collection-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid,
+      .store-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        height: 70px;
+      }
+
+      .nav {
+        width: calc(100% - 25px);
+      }
+
+      .brand img {
+        width: 47px;
+        height: 47px;
+      }
+
+      .brand-text {
+        font-size: 19px;
+      }
+
+      .hero {
+        min-height: 92vh;
+      }
+
+      .hero-content {
+        padding-top: 65px;
+      }
+
+      .hero-logo {
+        width: 135px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      section {
+        padding: 80px 16px;
+      }
+
+      .collection-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-card {
+        min-height: 175px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .collection-view-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .collection-view-head h2 {
+        font-size: 40px;
+      }
+
+      .product-info h4 {
+        font-size: 19px;
+      }
+
+      .about-symbol {
+        width: 270px;
+      }
+
+      .store-card {
+        padding: 30px 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-box {
+        padding: 45px 20px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .floating-whatsapp {
+        right: 15px;
+        bottom: 15px;
+      }
+
+      .back-top {
+        right: 15px;
+        bottom: 83px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADER
+  ========================= -->
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-ring">
+        <span></span>
+      </div>
+      <div class="loader-title">AURA</div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header id="header">
+    <nav class="nav">
+
+      <a href="#home" class="brand">
+        <img
+          src="aura-the-jewels-logo.png"
+          alt="Aura The Jewels"
+        />
+        <span class="brand-text">Aura The Jewels</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="#home">Home</a>
+        </li>
+
+        <li>
+          <a href="#collections">Collections</a>
+        </li>
+
+        <li>
+          <a href="#about">About</a>
+        </li>
+
+        <li>
+          <a href="#store">Store</a>
+        </li>
+
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a
+          class="nav-whatsapp"
+          href="https://wa.me/917483733619"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          ☰
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <img
+          src="aura-the-jewels-logo.png"
+          class="hero-logo"
+          alt="Aura The Jewels Logo"
+        />
+
+        <div class="eyebrow">
+          Mangaluru • Karnataka
+        </div>
+
+        <h1>
+          Timeless
+          <span>Elegance</span>
+        </h1>
+
+        <p class="hero-description">
+          Discover jewellery created to celebrate your most beautiful
+          moments — thoughtfully selected, elegantly presented and made
+          to be remembered.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#collections"
+            class="btn btn-primary"
+          >
+            Explore Collections
+          </a>
+
+          <a
+            href="https://wa.me/917483733619?text=Hello%20Aura%20The%20Jewels%2C%20I%20would%20like%20to%20know%20more%20about%20your%20jewellery."
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline"
+          >
+            WhatsApp Us
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-scroll">
+        Scroll to discover
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COLLECTIONS
+    ========================= -->
+
+    <section id="collections">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="section-label">
+            Explore
+          </div>
+
+          <h2 class="section-title">
+            Our Collections
+          </h2>
+
+          <p class="section-text">
+            Explore our carefully selected jewellery categories.
+            Select a collection to discover the pieces within it.
+          </p>
+
+        </div>
+
+
+        <div class="collection-grid">
+
+          <article
+            class="collection-card reveal"
+            data-collection="Kada"
+          >
+            <span class="collection-number">01</span>
+
+            <div>
+              <h3>Kada</h3>
+              <p>Classic everyday elegance</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Punjabi Kada"
+          >
+            <span class="collection-number">02</span>
+
+            <div>
+              <h3>Punjabi Kada</h3>
+              <p>Bold traditional character</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Rings"
+          >
+            <span class="collection-number">03</span>
+
+            <div>
+              <h3>Rings</h3>
+              <p>Pieces that make a statement</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Chain & Pendant"
+          >
+            <span class="collection-number">04</span>
+
+            <div>
+              <h3>Chain & Pendant</h3>
+              <p>Elegant everyday essentials</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Anklets"
+          >
+            <span class="collection-number">05</span>
+
+            <div>
+              <h3>Anklets</h3>
+              <p>Delicate finishing touches</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Stud Earrings"
+          >
+            <span class="collection-number">06</span>
+
+            <div>
+              <h3>Stud Earrings</h3>
+              <p>Simple and timeless</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Hoop Earrings"
+          >
+            <span class="collection-number">07</span>
+
+            <div>
+              <h3>Hoop Earrings</h3>
+              <p>Elegant everyday style</p>
+            </div>
+          </article>
+
+
+          <article
+            class="collection-card reveal"
+            data-collection="Nose Pins"
+          >
+            <span class="collection-number">08</span>
+
+            <div>
+              <h3>Nose Pins</h3>
+              <p>Subtle traditional beauty</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COLLECTION OPENING AREA
+    ========================= -->
+
+    <section
+      class="collection-view"
+      id="collectionView"
+    >
+
+      <div class="container">
+
+        <div class="collection-view-head">
+
+          <div>
+            <div class="section-label">
+              Collection
+            </div>
+
+            <h2 id="collectionTitle">
+              Rings
+            </h2>
+          </div>
+
+          <button
+            class="close-collection"
+            id="closeCollection"
+          >
+            ← Back to Collections
+          </button>
+
+        </div>
+
+
+        <div
+          class="product-grid"
+          id="productGrid"
+        >
+
+          <!-- Products will be inserted here automatically -->
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-symbol reveal">
+
+            <img
+              src="aura-the-jewels-logo.png"
+              alt="Aura The Jewels"
+            />
+
+          </div>
+
+
+          <div class="about-content reveal">
+
+            <div class="section-label">
+              About Aura
+            </div>
+
+            <h2>
+              Jewellery with
+              <br />
+              meaning.
+            </h2>
+
+            <p>
+              Aura The Jewels is a jewellery destination created
+              around timeless beauty, elegance and personal expression.
+            </p>
+
+            <p>
+              From everyday pieces to special occasions, our collections
+              are selected to complement the moments that matter.
+            </p>
+
+            <p>
+              Visit us in Mangaluru and experience our jewellery
+              collection in person.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORE
+    ========================= -->
+
+    <section id="store">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div class="section-label">
+            Visit Us
+          </div>
+
+          <h2
+            class="section-title"
+            style="color:white;"
+          >
+            Our Store
+          </h2>
+
+          <p
+            class="section-text"
+            style="color:#aaa39a;"
+          >
+            Come visit Aura The Jewels and explore our collections
+            in person.
+          </p>
+
+        </div>
+
+
+        <div class="store-grid">
+
+          <div class="store-card reveal">
+
+            <h3>
+              Find Us
+            </h3>
+
+            <p>
+              Visit our showroom and discover your next favourite
+              piece of jewellery.
+            </p>
+
+            <div class="store-detail">
+
+              <span class="store-icon">⌖</span>
+
+              <span>
+                City Centre
+                <br />
+                2nd Floor
+                <br />
+                Mangaluru, Karnataka
+              </span>
+
+            </div>
+
+            <div class="store-buttons">
+
+              <a
+                class="dark-btn"
+                href="https://www.google.com/maps/search/?api=1&query=City+Centre+Mangaluru"
+                target="_blank"
+                rel="noopener"
+              >
+                Open Maps
+              </a>
+
+              <a
+                class="dark-btn"
+                href="tel:+917483733619"
+              >
+                Call Us
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div class="store-card reveal">
+
+            <h3>
+              Connect With Us
+            </h3>
+
+            <p>
+              Have a question about a collection or want to enquire
+              about a jewellery piece? Contact us directly.
+            </p>
+
+            <div class="store-detail">
+
+              <span class="store-icon">☎</span>
+
+              <a href="tel:+917483733619">
+                +91 74837 33619
+              </a>
+
+            </div>
+
+
+            <div class="store-detail">
+
+              <span class="store-icon">✦</span>
+
+              <a
+                href="https://www.instagram.com/aura.thejewels?stkn=eGlneWx6cTc5enFy"
+                target="_blank"
+                rel="noopener"
+              >
+                @aura.thejewels
+              </a>
+
+            </div>
+
+
+            <div class="store-buttons">
+
+              <a
+                class="dark-btn"
+                href="https://wa.me/917483733619?text=Hello%20Aura%20The%20Jewels%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+                target="_blank"
+                rel="noopener"
+              >
+                WhatsApp
+              </a>
+
+              <a
+                class="dark-btn"
+                href="https://www.instagram.com/aura.thejewels?stkn=eGlneWx6cTc5enFy"
+                target="_blank"
+                rel="noopener"
+              >
+                Instagram
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="contact-box reveal">
+
+          <div class="section-label">
+            Contact Aura
+          </div>
+
+          <h2>
+            Let's find your
+            <br />
+            perfect piece.
+          </h2>
+
+          <p>
+            Speak with Aura The Jewels for jewellery enquiries,
+            collection information and store visits.
+          </p>
+
+          <div class="contact-actions">
+
+            <a
+              href="tel:+917483733619"
+              class="btn btn-primary"
+            >
+              Call +91 74837 33619
+            </a>
+
+            <a
+              href="https://wa.me/917483733619?text=Hello%20Aura%20The%20Jewels%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline"
+            >
+              WhatsApp
+            </a>
+
+            <a
+              href="https://www.instagram.com/aura.thejewels?stkn=eGlneWx6cTc5enFy"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline"
+            >
+              Instagram
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        Aura The Jewels
+      </div>
+
+      <div class="footer-social">
+
+        <a
+          href="https://www.instagram.com/aura.thejewels?stkn=eGlneWx6cTc5enFy"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram
+        </a>
+
+        <a
+          href="https://wa.me/917483733619"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+
+        <a href="tel:+917483733619">
+          Call
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> Aura The Jewels. All rights reserved.
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       FLOATING BUTTONS
+  ========================= -->
+
+  <a
+    class="floating-whatsapp"
+    href="https://wa.me/917483733619?text=Hello%20Aura%20The%20Jewels%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp Aura The Jewels"
+  >
+    ☎
+  </a>
+
+
+  <button
+    class="back-top"
+    id="backTop"
+    aria-label="Back to top"
+  >
+    ↑
+  </button>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       BASIC SETTINGS
+    ========================= */
+
+    const WHATSAPP_NUMBER = "917483733619";
+
+    const INSTAGRAM_URL =
+      "https://www.instagram.com/aura.thejewels?stkn=eGlneWx6cTc5enFy";
+
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    window.addEventListener("load", () => {
+
+      const loader = document.getElementById("loader");
+
+      setTimeout(() => {
+        loader.classList.add("hide");
+      }, 500);
+
+    });
+
+
+    /* =========================
+       HEADER SCROLL
+    ========================= */
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+
+      navLinks.classList.toggle("mobile-open");
+
+      if (navLinks.classList.contains("mobile-open")) {
+        menuBtn.textContent = "×";
+      } else {
+        menuBtn.textContent = "☰";
+      }
+
+    });
+
+
+    navLinks.querySelectorAll("a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        navLinks.classList.remove("mobile-open");
+
+        menuBtn.textContent = "☰";
+
+      });
+
+    });
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+
+
+    /* =========================
+       COLLECTION DATA
+    ========================= */
+
+    const collections = {
+
+      "Kada": {
+        description: "Classic everyday elegance",
+        items: [
+          "Kada Collection 01",
+          "Kada Collection 02",
+          "Kada Collection 03"
+        ]
+      },
+
+      "Punjabi Kada": {
+        description: "Bold traditional character",
+        items: [
+          "Punjabi Kada 01",
+          "Punjabi Kada 02",
+          "Punjabi Kada 03"
+        ]
+      },
+
+      "Rings": {
+        description: "Pieces that make a statement",
+        items: [
+          "Ring Collection 01",
+          "Ring Collection 02",
+          "Ring Collection 03"
+        ]
+      },
+
+      "Chain & Pendant": {
+        description: "Elegant everyday essentials",
+        items: [
+          "Chain & Pendant 01",
+          "Chain & Pendant 02",
+          "Chain & Pendant 03"
+        ]
+      },
+
+      "Anklets": {
+        description: "Delicate finishing touches",
+        items: [
+          "Anklet Collection 01",
+          "Anklet Collection 02",
+          "Anklet Collection 03"
+        ]
+      },
+
+      "Stud Earrings": {
+        description: "Simple and timeless",
+        items: [
+          "Stud Earrings 01",
+          "Stud Earrings 02",
+          "Stud Earrings 03"
+        ]
+      },
+
+      "Hoop Earrings": {
+        description: "Elegant everyday style",
+        items: [
+          "Hoop Earrings 01",
+          "Hoop Earrings 02",
+          "Hoop Earrings 03"
+        ]
+      },
+
+      "Nose Pins": {
+        description: "Subtle traditional beauty",
+        items: [
+          "Nose Pin 01",
+          "Nose Pin 02",
+          "Nose Pin 03"
+        ]
+      }
+
+    };
+
+
+    /* =========================
+       COLLECTION OPEN
+    ========================= */
+
+    const collectionCards =
+      document.querySelectorAll(".collection-card");
+
+    const collectionView =
+      document.getElementById("collectionView");
+
+    const collectionTitle =
+      document.getElementById("collectionTitle");
+
+    const productGrid =
+      document.getElementById("productGrid");
+
+    const closeCollection =
+      document.getElementById("closeCollection");
+
+
+    function openCollection(name) {
+
+      const data = collections[name];
+
+      if (!data) return;
+
+      collectionTitle.textContent = name;
+
+      productGrid.innerHTML = "";
+
+      data.items.forEach((item, index) => {
+
+        const card =
+          document.createElement("article");
+
+        card.className = "product-card";
+
+        card.innerHTML = `
+
+          <div class="product-image">
+
+            <span>
+              ${name}
+            </span>
+
+          </div>
+
+          <div class="product-info">
+
+            <h4>
+              ${item}
+            </h4>
+
+            <p>
+              Product details will be added when
+              the collection images are provided.
+            </p>
+
+            <a
+              class="product-inquiry"
+              href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                "Hello Aura The Jewels, I am interested in " + item + "."
+              )}"
+              target="_blank"
+              rel="noopener"
+            >
+              Enquire on WhatsApp →
+            </a>
+
+          </div>
+
+        `;
+
+        productGrid.appendChild(card);
+
+      });
+
+      collectionView.classList.add("active");
+
+      setTimeout(() => {
+
+        collectionView.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 80);
+
+    }
+
+
+    collectionCards.forEach(card => {
+
+      card.addEventListener("click", () => {
+
+        const collection =
+          card.dataset.collection;
+
+        openCollection(collection);
+
+      });
+
+    });
+
+
+    /* =========================
+       CLOSE COLLECTION
+    ========================= */
+
+    closeCollection.addEventListener("click", () => {
+
+      collectionView.classList.remove("active");
+
+      setTimeout(() => {
+
+        document
+          .getElementById("collections")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+
+      }, 100);
+
+    });
+
+
+    /* =========================
+       BACK TO TOP
+    ========================= */
+
+    const backTop =
+      document.getElementById("backTop");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 600) {
+        backTop.classList.add("show");
+      } else {
+        backTop.classList.remove("show");
+      }
+
+    });
+
+
+    backTop.addEventListener("click", () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+
+    /* =========================
+       CURRENT YEAR
+    ========================= */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* =========================
+       ESC KEY
+    ========================= */
+
+    document.addEventListener("keydown", event => {
+
+      if (event.key === "Escape") {
+
+        if (collectionView.classList.contains("active")) {
+
+          collectionView.classList.remove("active");
+
+        }
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>

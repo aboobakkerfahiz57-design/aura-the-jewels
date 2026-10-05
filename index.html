@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -579,6 +579,18 @@
       color: #a99a86;
       font-family: var(--serif);
       font-size: 25px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
     }
 
     .product-info {
@@ -1084,6 +1096,7 @@
       </ul>
 
       <div class="nav-actions">
+
         <a
           class="nav-whatsapp"
           href="https://wa.me/917483733619"
@@ -1093,9 +1106,14 @@
           WhatsApp
         </a>
 
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          aria-label="Open menu"
+        >
           ☰
         </button>
+
       </div>
 
     </nav>
@@ -1314,6 +1332,7 @@
         <div class="collection-view-head">
 
           <div>
+
             <div class="section-label">
               Collection
             </div>
@@ -1321,6 +1340,7 @@
             <h2 id="collectionTitle">
               Rings
             </h2>
+
           </div>
 
           <button
@@ -1338,7 +1358,7 @@
           id="productGrid"
         >
 
-          <!-- Products will be inserted here automatically -->
+          <!-- Products inserted automatically -->
 
         </div>
 
@@ -1825,12 +1845,36 @@
         ]
       },
 
+      /*
+       * RINGS
+       * Your uploaded ring photos are already inside:
+       *
+       * images/rings/ring-01.jpeg
+       * images/rings/ring-02.jpeg
+       * images/rings/ring-03.jpeg
+       * images/rings/ring-04.jpeg
+       */
+
       "Rings": {
         description: "Pieces that make a statement",
+
         items: [
-          "Ring Collection 01",
-          "Ring Collection 02",
-          "Ring Collection 03"
+          {
+            name: "Ring Collection 01",
+            image: "images/rings/ring-01.jpeg"
+          },
+          {
+            name: "Ring Collection 02",
+            image: "images/rings/ring-02.jpeg"
+          },
+          {
+            name: "Ring Collection 03",
+            image: "images/rings/ring-03.jpeg"
+          },
+          {
+            name: "Ring Collection 04",
+            image: "images/rings/ring-04.jpeg"
+          }
         ]
       },
 
@@ -1919,31 +1963,61 @@
 
         card.className = "product-card";
 
+
+        /*
+         * If the collection item contains an image,
+         * display the real uploaded image.
+         *
+         * Otherwise keep the existing placeholder
+         * for categories whose photos have not been
+         * uploaded yet.
+         */
+
+        const imageHTML =
+          typeof item === "object" && item.image
+            ? `
+              <div class="product-image">
+                <img
+                  src="${item.image}"
+                  alt="${item.name}"
+                  loading="lazy"
+                />
+              </div>
+            `
+            : `
+              <div class="product-image">
+                <span>
+                  ${name}
+                </span>
+              </div>
+            `;
+
+
+        const itemName =
+          typeof item === "object"
+            ? item.name
+            : item;
+
+
         card.innerHTML = `
 
-          <div class="product-image">
-
-            <span>
-              ${name}
-            </span>
-
-          </div>
+          ${imageHTML}
 
           <div class="product-info">
 
             <h4>
-              ${item}
+              ${itemName}
             </h4>
 
             <p>
               Product details will be added when
-              the collection images are provided.
+              the collection information is provided.
             </p>
 
             <a
               class="product-inquiry"
               href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                "Hello Aura The Jewels, I am interested in " + item + "."
+                "Hello Aura The Jewels, I am interested in " + itemName + "."
               )}"
               target="_blank"
               rel="noopener"
@@ -1959,7 +2033,9 @@
 
       });
 
+
       collectionView.classList.add("active");
+
 
       setTimeout(() => {
 
